@@ -42,7 +42,7 @@ def image_number_in_dir(dir_path):
     image_counts = {}
     for dirpath, dirnames, filenames in os.walk(dir_path):
         path = dirpath.split('/')[-1]
-        if path != 'dataset':
+        if len(filenames) != 0:
             image_counts[path] = len(filenames)
     return image_counts
 
