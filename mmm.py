@@ -26,6 +26,29 @@ def load_and_prep_image(filename, img_shape=224, scale=True):
     return img/255.
   else:
     return img
+# //////////////////////////////////////////////////////
+import os
+
+def image_number_in_dir(dir_path):
+    """
+    Counts the number of images in each directory within the given directory path.
+    
+    Parameters:
+        dir_path (str): The path to the directory containing subdirectories with images.
+
+    Returns:
+        dict: A dictionary where keys are directory names and values are the counts of images in each directory.
+    """
+    image_counts = {}
+    for dirpath, dirnames, filenames in os.walk(dir_path):
+        print(f"There are {len(dirnames)} directories and {len(filenames)} images in '{dirpath}'.")
+        path = dirpath.split('/')[-1]
+        if path != 'dataset':
+            image_counts[path] = len(filenames)
+    return image_counts
+
+
+
 
 # Note: The following confusion matrix code is a remix of Scikit-Learn's 
 # plot_confusion_matrix function - https://scikit-learn.org/stable/modules/generated/sklearn.metrics.plot_confusion_matrix.html
